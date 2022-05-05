@@ -1,0 +1,34 @@
+{
+	"name": "authentication-starter",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node ./bin/www"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sevkioruc/node-authentication-starter.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/sevkioruc/node-authentication-starter/issues"
+	},
+	"homepage": "https://github.com/sevkioruc/node-authentication-starter#readme",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"cookie-session": "^2.0.0",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.0",
+		"express": "^4.18.1",
+		"express-session": "^1.17.2",
+		"express-validator": "^6.14.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^6.3.2",
+		"passport": "^0.5.2",
+		"passport-jwt": "^4.0.0",
+		"passport-local": "^1.0.0"
+	}
+}
