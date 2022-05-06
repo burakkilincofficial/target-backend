@@ -36,5 +36,6 @@ app.use(async (req, res, next) => {
 
 // Routes
 require('./routes/auth')(app)
+require('./routes/target')(app)
 
 module.exports = app
