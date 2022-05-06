@@ -1,5 +1,5 @@
 {
-	"name": "authentication-starter",
+	"name": "target-backend",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
@@ -8,15 +8,15 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sevkioruc/node-authentication-starter.git"
+		"url": "git+https://github.com/sevkioruc/target-backend.git"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/sevkioruc/node-authentication-starter/issues"
+		"url": "https://github.com/sevkioruc/target-backend/issues"
 	},
-	"homepage": "https://github.com/sevkioruc/node-authentication-starter#readme",
+	"homepage": "https://github.com/sevkioruc/target-backend#readme",
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
 		"cookie-session": "^2.0.0",
