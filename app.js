@@ -1,11 +1,17 @@
 const express = require('express')
 const session = require('cookie-session')
+const ejs = require('ejs')
 
 const setupPassport = require('./lib/passport')
 
 require('./database-connection')
 
 const app = express()
+
+app.engine('.ejs', ejs.__express)
+app.set('views', __dirname + '/views')
+app.use(express.static(__dirname + '/public'))
+
 const passport = setupPassport()
 
 const { COOKIE_SEESION_KEY_1, COOKIE_SEESION_KEY_2 } = require('./config')

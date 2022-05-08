@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const config = require('../config')
+const { sendUserVerificationEmail } = require('../services/userVerificationService')
 
 exports.register = async (req, res) => {
 	try {
@@ -16,6 +17,8 @@ exports.register = async (req, res) => {
 		})
 
 		await user.save()
+		await sendUserVerificationEmail(user)
+
 		res.status(201).send({ msg: 'user was created successfully' })
 	} catch {
 		res.status(500).send({ msg: 'some error occured while user creating' })
@@ -45,7 +48,7 @@ exports.verifyUser = async (req, res, next) => {
 		} else {
 			user.verified = true
 			await user.save()
-			res.status(200).send({ msg: 'user was verified successfully' })
+			res.render('./user_verification_success.ejs', { username: user.username })
 		}
 	} catch {
 
