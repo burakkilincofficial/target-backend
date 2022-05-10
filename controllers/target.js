@@ -14,13 +14,15 @@ exports.create = async (req, res, next) => {
 	}
 }
 
-exports.findAll = async (req, res, next) => {
+exports.findAll = async (req, res) => {
 	const targets = await Target.find({ userId: req.user.id })
 	res.status(200).json({ targets })
 }
 
-exports.findOne = async (req, res, next) => {
+exports.findOne = async (req, res) => {
 	const target = await Target.findOne({ _id: req.params.targetId, userId: req.user.id })
+	if (!target)
+		return res.status(400).send({ msg: 'Could not find target' })
 	res.status(200).json({ target })
 }
 
@@ -42,7 +44,7 @@ exports.update = async (req, res, next) => {
 	}
 }
 
-exports.delete = async (req, res, next) => {
+exports.delete = async (req, res) => {
 	const target = await Target.findOne({ _id: req.params.targetId, userId: req.user.id })
 	if (!target)
 		return res.status(200).send({ msg: 'Could not find target' })
@@ -50,4 +52,36 @@ exports.delete = async (req, res, next) => {
 	await target.delete()
 
 	res.status(200).send({ msg: 'target was deleted successfully' })
+}
+
+exports.increment = async (req, res, next) => {
+	try {
+		let target = await Target.findOne({ _id: req.params.targetId, userId: req.user.id })
+
+		if (!target)
+			return res.status(400).send({ msg: 'Could not find target' })
+
+		target.currentScore += 1
+		await target.save()
+
+		res.status(200).send({ msg: 'target was incremented successfully' })
+	} catch (err) {
+		return next(err)
+	}
+}
+
+exports.decrement = async (req, res, next) => {
+	try {
+		let target = await Target.findOne({ _id: req.params.targetId, userId: req.user.id })
+
+		if (!target)
+			return res.status(400).send({ msg: 'Could not find target' })
+
+		target.currentScore -= 1
+		await target.save()
+
+		res.status(200).send({ msg: 'target was decremented successfully' })
+	} catch (err) {
+		return next(err)
+	}
 }
